@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Padmin | Raspberry Pi Dashboard</title>
+    <meta http-equiv="refresh" content="300">
+
+    <link rel="stylesheet" href="css/bundle.min.css">
+    <link rel="stylesheet" href="css/app.min.css">
+    <link href="https://fonts.googleapis.com/css?family=Lato|Source+Sans+Pro:200,400,700" rel="stylesheet">
+
+    <script type="text/javascript" src="js/bundle.min.js"></script>
+    <script type="text/javascript" src="js/app.min.js"></script>
+
+</head>
+<body>
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <a class="navbar-brand" href="#">PyMonitor</a>
+
+    <div class="navbar ml-auto">
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item">
+                <small>
+                    {{ data.platform.distro }} ({{ data.platform.kernel }})
+                </small>
+            </li>
+        </ul>
+    </div>
+</nav>
+
+<div class="container my-5">
+    <div class="row">
+        <div class="col-md-4">
+            <div class="third widget doughnut">
+                <div class="chart-legend">
+                    <h3>Temperature</h3>
+                </div>
+                <div id="temp" style="min-width: 310px; max-width: 400px; height: 300px; margin: 0 auto"></div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="third widget line">
+                <div class="chart-legend">
+                    <h3>CPU</h3>
+                </div>
+                <div id="cpu" style="min-width: 310px; max-width: 400px; height: 300px; margin: 0 auto"></div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="third widget">
+                <div class="chart-legend">
+                    <h3>Disk</h3>
+                </div>
+                <div id="disk" style="min-width: 310px; max-width: 400px; height: 300px; margin: 0 auto"></div>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    /**
+     * Temperature
+     */
+    $(function () {
+        $('#temp').highcharts({
+            chart: {
+                type: 'solidgauge'
+            },
+            title: null,
+            credits: {
+                enabled: false
+            },
+            tooltip: {
+                enabled: false
+            },
+            pane: {
+                center: ['50%', '50%'],
+                size: '100%',
+                startAngle: 0,
+                endAngle: 360,
+                background: {
+                    borderWidth: 0,
+                    backgroundColor: {
+                        radialGradient: {cx: 0.5, cy: 0.5, r: 0.46},
+                        stops: [
+                            [0, '#000'],
+                            [1, '#D6DADC']
+                        ]
+                    },
+                    innerRadius: '90%',
+                    outerRadius: '100%',
+                    shape: 'circle'
+                }
+            },
+            yAxis: {
+                min: 0,
+                max: 100,
+                title: {
+                    text: 'Speed'
+                },
+                stops: [
+                    [0, "#637b85"]
+                ],
+                lineWidth: 0,
+                minorTickInterval: null,
+                tickPixelInterval: 400,
+                tickWidth: 0,
+                title: {
+                    y: -70
+                },
+                labels: {
+                    enabled: false
+                }
+            },
+            plotOptions: {
+                solidgauge: {
+                    dataLabels: {
+                        enabled: true,
+                        y: -31,
+                        borderWidth: 0,
+                        useHTML: true,
+                        format: '{y}°C',
+                        style: {
+                            fontSize: '42px',
+                            fontFamily: 'Lato',
+                            fontWeight: '300',
+                            color: '#4A4A4A'
+                        }
+                    }
+                }
+            },
+            series: [{
+                innerRadius: '90%',
+                data: [Math.round({{ data.cpu.temp }})]
+            }]
+        });
+    });
+
+
+    $(function () {
+        $('#cpu').highcharts({
+            chart: {
+                type: 'solidgauge'
+            },
+            title: null,
+            credits: {
+                enabled: false
+            },
+            tooltip: {
+                enabled: false
+            },
+            pane: {
+                center: ['50%', '50%'],
+                size: '100%',
+                startAngle: 0,
+                endAngle: 360,
+                background: {
+                    borderWidth: 0,
+                    backgroundColor: {
+                        radialGradient: {cx: 0.5, cy: 0.5, r: 0.46},
+                        stops: [
+                            [0, '#000'],
+                            [1, '#D6DADC']
+                        ]
+                    },
+                    innerRadius: '90%',
+                    outerRadius: '100%',
+                    shape: 'circle'
+                }
+            },
+            yAxis: {
+                min: 0,
+                max: 100,
+                title: {
+                    text: 'Speed'
+                },
+                stops: [
+                    [0, "#637b85"]
+                ],
+                lineWidth: 0,
+                minorTickInterval: null,
+                tickPixelInterval: 400,
+                tickWidth: 0,
+                title: {
+                    y: -70
+                },
+                labels: {
+                    enabled: false
+                }
+            },
+            plotOptions: {
+                solidgauge: {
+                    dataLabels: {
+                        enabled: true,
+                        y: -31,
+                        borderWidth: 0,
+                        useHTML: true,
+                        format: '{y}%',
+                        style: {
+                            fontSize: '42px',
+                            fontFamily: 'Lato',
+                            fontWeight: '300',
+                            color: '#4A4A4A'
+                        }
+                    }
+                }
+            },
+            series: [{
+                innerRadius: '90%',
+                data: [{{ data.cpu.usage }}]
+            }
+            ]
+        });
+    });
+
+    /**
+     * Disk
+     */
+    $(function () {
+        $('#disk').highcharts({
+            chart: {
+                type: 'solidgauge'
+            },
+            title: null,
+            credits: {
+                enabled: false
+            },
+            tooltip: {
+                enabled: false
+            },
+            pane: {
+                center: ['50%', '50%'],
+                size: '100%',
+                startAngle: 0,
+                endAngle: 360,
+                background: {
+                    borderWidth: 0,
+                    backgroundColor: {
+                        radialGradient: {cx: 0.5, cy: 0.5, r: 0.46},
+                        stops: [
+                            [0, '#000'],
+                            [1, '#D6DADC']
+                        ]
+                    },
+                    innerRadius: '90%',
+                    outerRadius: '100%',
+                    shape: 'circle'
+                }
+            },
+            yAxis: {
+                min: 0,
+                max: 100,
+                title: {
+                    text: 'Speed'
+                },
+                stops: [
+                    [0, "#637b85"]
+                ],
+                lineWidth: 0,
+                minorTickInterval: null,
+                tickPixelInterval: 400,
+                tickWidth: 0,
+                title: {
+                    y: -70
+                },
+                labels: {
+                    enabled: false
+                }
+            },
+            plotOptions: {
+                solidgauge: {
+                    dataLabels: {
+                        enabled: true,
+                        y: -31,
+                        borderWidth: 0,
+                        useHTML: true,
+                        format: '{y}%',
+                        style: {
+                            fontSize: '42px',
+                            fontFamily: 'Lato',
+                            fontWeight: '300',
+                            color: '#4A4A4A'
+                        }
+                    }
+                }
+            },
+            series: [{
+                innerRadius: '90%',
+                data: [{{ data.disk.percent }}]
+            }]
+        });
+    });
+</script>
+</body>
+</html>

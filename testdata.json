@@ -1,0 +1,54 @@
+{
+    "data": {
+        "cpu": {
+            "freq": 600,
+            "temp": 51.608,
+            "usage": 0.8
+        },
+        "disk": {
+            "free": 20.48684310913086,
+            "percent": 21,
+            "total": 27.354976654052734,
+            "used": 5.4565887451171875
+        },
+        "platform": {
+            "distro": "Raspbian GNU/Linux 10 (buster)",
+            "kernel": "4.19.57-v7l+"
+        },
+        "processes": [
+            {
+                "name": "apache2",
+                "pid": 22531,
+                "username": "pi",
+                "vms": 278
+            },
+            {
+                "name": "apache2",
+                "pid": 22532,
+                "username": "www-data",
+                "vms": 211
+            },
+            {
+                "name": "apache2",
+                "pid": 22533,
+                "username": "www-data",
+                "vms": 210
+            },
+            {
+                "name": "apache2",
+                "pid": 22534,
+                "username": "www-data",
+                "vms": 210
+            },
+            {
+                "name": "apache2",
+                "pid": 22535,
+                "username": "www-data",
+                "vms": 210
+            }
+        ],
+        "uptime": {
+            "uptime": "2 days, 18 hours, 29 minutes, 59 seconds"
+        }
+    }
+}

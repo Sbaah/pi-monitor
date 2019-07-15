@@ -1,0 +1,19 @@
+{
+    "name": "chrisdevelops/py-monitor",
+    "authors": [
+        {
+            "name": "cversyx",
+            "email": "cmrowles@pm.me"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "App\\": "src/"
+        }
+    },
+    "require": {
+        "guzzlehttp/guzzle": "^6.3",
+        "twig/twig": "^2.11",
+        "klein/klein": "^2.1"
+    }
+}
