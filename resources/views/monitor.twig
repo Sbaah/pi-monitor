@@ -96,6 +96,11 @@
     </div>
     <div class="row my-5">
         <div class="col-md-12">
+            <div id="live_view"></div>
+        </div>
+    </div>
+    <div class="row my-5">
+        <div class="col-md-12">
             <table class="table table-sm">
                 <thead>
                 <tr>
@@ -158,7 +163,16 @@
                     text: 'Speed'
                 },
                 stops: [
-                    [0, "#637b85"]
+                    // Safe temperature caps out at 60
+                    {% if(data.cpu.temp < 55) %}
+                        [0, "#28a745"]
+                     // Thermal throttling will occur at 80
+                    {% elseif(data.cpu.temp >= 55 or data.cpu.temp < 81) %}
+                        [0, "#ffc107"]
+                    // If you see red you have a serious problem
+                    {% else %}
+                        [0, "#dc3545"]
+                    {% endif %}
                 ],
                 lineWidth: 0,
                 minorTickInterval: null,
@@ -233,7 +247,13 @@
                     text: 'Speed'
                 },
                 stops: [
-                    [0, "#637b85"]
+                    {% if(data.cpu.usage < 60) %}
+                        [0, "#28a745"]
+                    {% elseif(data.cpu.usage >= 60 or data.cpu.usage < 85) %}
+                        [0, "#ffc107"]
+                    {% else %}
+                        [0, "#dc3545"]
+                    {% endif %}
                 ],
                 lineWidth: 0,
                 minorTickInterval: null,
@@ -305,11 +325,14 @@
             yAxis: {
                 min: 0,
                 max: 100,
-                title: {
-                    text: 'Speed'
-                },
                 stops: [
-                    [0, "#637b85"]
+                    {% if(data.disk.percent < 45) %}
+                        [0, "#28a745"]
+                    {% elseif(data.disk.used >= 45 or data.disk.used < 80) %}
+                        [0, "#ffc107"]
+                    {% else %}
+                        [0, "#dc3545"]
+                    {% endif %}
                 ],
                 lineWidth: 0,
                 minorTickInterval: null,
