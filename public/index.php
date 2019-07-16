@@ -21,8 +21,6 @@ $router->respond('GET', '/', function () use ($monitor, $view)
         }
     }
 
-    var_dump($data);
-
     return $view->render('monitor.twig', $data);
 });
 

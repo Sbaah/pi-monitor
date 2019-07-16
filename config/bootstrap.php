@@ -1,6 +1,6 @@
 <?php
 
-use App\PyMonitor\Monitor;
+use App\Api\Monitor;
 use Klein\Klein;
 use Twig\Environment;
 use Twig\Loader\FilesystemLoader;

@@ -21,6 +21,8 @@
             <li class="nav-item">
                 <small>
                     {{ data.platform.distro }} ({{ data.platform.kernel }})
+                    <br>
+                    Uptime: {{ data.uptime.uptime }}
                 </small>
             </li>
         </ul>
@@ -54,11 +56,70 @@
             </div>
         </div>
     </div>
+    <div class="row my-5">
+        <div class="col-md-6">
+            <table class="table table-sm">
+                <thead>
+                <tr>
+                    <th scope="col">CPU Temp</th>
+                    <th scope="col">CPU Freq</th>
+                    <th scope="col">CPU Usage</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td scope="row">{{ data.cpu.temp|round }}°C</td>
+                    <td scope="row">{{ data.cpu.freq }}MHz</td>
+                    <td scope="row">{{ data.cpu.usage }}%</td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="col-md-6">
+            <table class="table table-sm">
+                <thead>
+                <tr>
+                    <th scope="col">Disk Used</th>
+                    <th scope="col">Disk Free</th>
+                    <th scope="col">Disk Total</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td scope="row">{{ data.disk.used|round }}GB</td>
+                    <td scope="row">{{ data.disk.free|round }}GB</td>
+                    <td scope="row">{{ data.disk.total|round }}GB</td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div class="row my-5">
+        <div class="col-md-12">
+            <table class="table table-sm">
+                <thead>
+                <tr>
+                    <th scope="col">Name</th>
+                    <th scope="col">PID</th>
+                    <th scope="col">User</th>
+                    <th scope="col">VMS</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for proc in data.processes %}
+                    <tr>
+                        <td>{{ proc.name }}</td>
+                        <td>{{ proc.pid }}</td>
+                        <td>{{ proc.username }}</td>
+                        <td>{{ proc.vms}}</td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
 </div>
 <script>
-    /**
-     * Temperature
-     */
     $(function () {
         $('#temp').highcharts({
             chart: {
@@ -133,7 +194,6 @@
             }]
         });
     });
-
 
     $(function () {
         $('#cpu').highcharts({
@@ -211,9 +271,6 @@
         });
     });
 
-    /**
-     * Disk
-     */
     $(function () {
         $('#disk').highcharts({
             chart: {

@@ -1,6 +1,6 @@
 <?php
 
-namespace App\PyMonitor;
+namespace App\Api;
 
 use GuzzleHttp\Client;
 use GuzzleHttp\Exception\GuzzleException;

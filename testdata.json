@@ -2,14 +2,14 @@
     "data": {
         "cpu": {
             "freq": 600,
-            "temp": 51.608,
-            "usage": 0.8
+            "temp": 49.66,
+            "usage": 0.3
         },
         "disk": {
-            "free": 20.48684310913086,
-            "percent": 21,
+            "free": 20.271629333496094,
+            "percent": 21.9,
             "total": 27.354976654052734,
-            "used": 5.4565887451171875
+            "used": 5.671802520751953
         },
         "platform": {
             "distro": "Raspbian GNU/Linux 10 (buster)",
@@ -18,37 +18,67 @@
         "processes": [
             {
                 "name": "apache2",
-                "pid": 22531,
+                "pid": 24070,
                 "username": "pi",
                 "vms": 278
             },
             {
                 "name": "apache2",
-                "pid": 22532,
-                "username": "www-data",
-                "vms": 211
-            },
-            {
-                "name": "apache2",
-                "pid": 22533,
+                "pid": 24071,
                 "username": "www-data",
                 "vms": 210
             },
             {
                 "name": "apache2",
-                "pid": 22534,
+                "pid": 24072,
                 "username": "www-data",
                 "vms": 210
             },
             {
                 "name": "apache2",
-                "pid": 22535,
+                "pid": 24073,
                 "username": "www-data",
                 "vms": 210
+            },
+            {
+                "name": "apache2",
+                "pid": 24074,
+                "username": "www-data",
+                "vms": 210
+            },
+            {
+                "name": "apache2",
+                "pid": 24075,
+                "username": "www-data",
+                "vms": 210
+            },
+            {
+                "name": "apache2",
+                "pid": 24084,
+                "username": "www-data",
+                "vms": 210
+            },
+            {
+                "name": "apache2",
+                "pid": 24066,
+                "username": "root",
+                "vms": 209
+            },
+            {
+                "name": "php-fpm7.3",
+                "pid": 12851,
+                "username": "root",
+                "vms": 207
+            },
+            {
+                "name": "php-fpm7.3",
+                "pid": 12852,
+                "username": "www-data",
+                "vms": 207
             }
         ],
         "uptime": {
-            "uptime": "2 days, 18 hours, 29 minutes, 59 seconds"
+            "uptime": "2 days, 21 hours, 7 minutes, 21 seconds"
         }
     }
 }
