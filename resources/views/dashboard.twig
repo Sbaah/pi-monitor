@@ -94,9 +94,9 @@
 {% block scripts %}
 <script>
     $(function () {
-        App.gauge("#temp",Math.round({{ system.data.cpu.temp }}), '{y}°C', "{{ system.data.cpu.ystop }}");
-        App.gauge("#cpu", Math.round({{ system.data.cpu.usage }}), '{y}%', "{{ system.data.cpu.ystop }}");
-        App.gauge("#disk", Math.round({{ system.data.disk.percent}}), '{y}%', "{{ system.data.cpu.ystop }}")
+        App.gauge('#temp',Math.round({{ system.data.cpu.temp }}), '{y}°C', '{{ system.data.cpu.ystop }}');
+        App.gauge('#cpu', Math.round({{ system.data.cpu.usage }}), '{y}%', '{{ system.data.cpu.ystop }}');
+        App.gauge('#disk', Math.round({{ system.data.disk.percent}}), '{y}%', '{{ system.data.cpu.ystop }}')
     });
 </script>
 {% endblock %}

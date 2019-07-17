@@ -6,7 +6,7 @@ $router->respond('GET', '/', function () use ($api, $view)
 {
     $data['system'] = $api->call('system');
     if (!$data['system']) {
-        die("Could not fetch data from the api :(");
+        die('Could not fetch data from the api :(');
     }
 
     return $view->render('dashboard.twig', $data);
@@ -16,7 +16,7 @@ $router->respond('GET', '/network', function () use ($api, $view)
 {
     $data['network'] = $api->call('network');
     if (!$data['network']) {
-        die("Could not fetch data from the api :(");
+        die('Could not fetch data from the api :(');
     }
 
     return $view->render('network.twig', $data);

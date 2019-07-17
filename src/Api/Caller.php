@@ -52,7 +52,7 @@ class Caller
     public function call(string $endpoint, string $method = 'GET')
     {
         if (DEBUG) {
-            $file = __DIR__ . '/../../tests/' . $endpoint . ".json";
+            $file = __DIR__ . '/../../tests/' . $endpoint . '.json';
             if(file_exists($file)) {
                 return $this->toArray(json_decode(file_get_contents($file)));
             } else {
@@ -61,7 +61,7 @@ class Caller
         }
 
         if (substr($endpoint, 0, 1) !== '/') {
-            $endpoint = "/" . $endpoint;
+            $endpoint = '/' . $endpoint;
         }
 
         try {
