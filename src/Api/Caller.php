@@ -52,8 +52,12 @@ class Caller
     public function call(string $endpoint, string $method = 'GET')
     {
         if (DEBUG) {
-            $endpoint = $endpoint . ".json";
-            return $this->toArray(json_decode(file_get_contents(__DIR__ . '/../../tests/' . $endpoint)));
+            $file = __DIR__ . '/../../tests/' . $endpoint . ".json";
+            if(file_exists($file)) {
+                return $this->toArray(json_decode(file_get_contents($file)));
+            } else {
+                return false;
+            }
         }
 
         if (substr($endpoint, 0, 1) !== '/') {

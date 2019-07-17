@@ -5,7 +5,7 @@ require_once __DIR__ . '/../config/bootstrap.php';
 $router->respond('GET', '/', function () use ($api, $view)
 {
     $data['system'] = $api->call('system');
-    if (!$data) {
+    if (!$data['system']) {
         die("Could not fetch data from the api :(");
     }
 
@@ -15,7 +15,7 @@ $router->respond('GET', '/', function () use ($api, $view)
 $router->respond('GET', '/network', function () use ($api, $view)
 {
     $data['network'] = $api->call('network');
-    if (!$data) {
+    if (!$data['network']) {
         die("Could not fetch data from the api :(");
     }
 
