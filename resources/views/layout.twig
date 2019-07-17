@@ -10,15 +10,15 @@
 </head>
 <body>
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-    <a class="navbar-brand" href="#">PyMonitor</a>
+    <a class="navbar-brand" href="">PyMonitor</a>
 
     <div class="navbar ml-auto">
         <ul class="navbar-nav mr-auto">
             <li class="nav-item">
                 <small>
-                    {{ system.data.platform.distro }} ({{ system.data.platform.kernel }})
+                    {{ core.data.platform.distro }} ({{ core.data.platform.kernel }})
                     <br>
-                    Uptime: {{ system.data.uptime.uptime }}
+                    Uptime: {{ core.data.uptime.uptime }}
                 </small>
             </li>
         </ul>

@@ -1,0 +1,82 @@
+{% extends 'layout.twig' %}
+
+{% block content %}
+    <ul class="nav nav-tabs">
+        {% for inet,stat in network.data.interfaces %}
+            {% if inet == "wlan0" %}
+                {% set active = "active" %}
+            {% else  %}
+                {% set active = "" %}
+            {% endif %}
+            <li class="nav-item"><a class="nav-link {{ active }}" data-toggle="tab" href="#{{ inet }}">{{ inet }}</a></li>
+        {% endfor %}
+    </ul>
+
+    <div class="tab-content my-3" style="width: 100%">
+        {% for inet,stat in network.data.interfaces %}
+            {% if inet == "wlan0" %}
+                {% set active = "active" %}
+            {% else %}
+                {% set active = "" %}
+            {% endif %}
+            <div class="tab-pane {{ active }}" id="{{ inet }}">
+                <div class="row">
+                    <div class="col-md-3">
+                        <div class="card text-white bg-dark o-hidden h-100">
+                            <div class="card-body">
+                                <div class="card-body-icon">
+                                    <i class="fas fa-fw fa-arrow-circle-down"></i>
+                                </div>
+                                <div class="mr-5">{{ stat.mb_received|number_format(2, '.', ',')  }} MB Received</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="card text-dark bg-light o-hidden h-100">
+                            <div class="card-body">
+                                <div class="card-body-icon">
+                                    <i class="fas fa-fw fa-arrow-circle-up"></i>
+                                </div>
+                                <div class="mr-5">{{ stat.mb_received|number_format(2, '.', ',') }} MB Sent</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="card text-light bg-dark h-100">
+                            <div class="card-body">
+                                <div class="card-body-icon">
+                                    <i class="fas fa-fw fa-arrow-circle-down"></i>
+                                </div>
+                                <div class="mr-5">{{ stat.pk_received|number_format(0, '.', ',') }} Packets Received</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="card text-dark bg-light o-hidden h-100">
+                            <div class="card-body">
+                                <div class="card-body-icon">
+                                    <i class="fas fa-fw fa-arrow-circle-up"></i>
+                                </div>
+                                <div class="mr-5">{{ stat.pk_sent|number_format(0, '.', ',') }} Packets Sent</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+
+    <hr>
+
+    <div class="row my-4">
+        <div class="col-md-6">
+            <label class="form-check-label font-weight-bold" for="ssid">Connected to:</label>
+            <p id="ssid"><a href="http://{{ network.data.gateway }}/" target="_blank">{{ network.data.ssid }}</a></p>
+            <label class="form-check-label font-weight-bold" for="since">Connected since:</label>
+            <p id="since">Saturday 6th July 2019 13:34:21</p>
+        </div>
+    </div>
+{% endblock %}
+
+{% block scripts %}
+{% endblock %}

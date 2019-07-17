@@ -2,17 +2,17 @@
 
 require_once __DIR__ . '/../config/bootstrap.php';
 
-$router->respond('GET', '/', function () use ($api, $view)
+$data['core'] = $api->call('system');
+$router->respond('GET', '/', function () use ($api, $view, $data)
 {
-    $data['system'] = $api->call('system');
-    if (!$data['system']) {
+    if (!$data['core']) {
         die('Could not fetch data from the api :(');
     }
 
     return $view->render('dashboard.twig', $data);
 });
 
-$router->respond('GET', '/network', function () use ($api, $view)
+$router->respond('GET', '/network', function () use ($api, $view, $data)
 {
     $data['network'] = $api->call('network');
     if (!$data['network']) {

@@ -39,9 +39,9 @@
                 </thead>
                 <tbody>
                 <tr>
-                    <td>{{ system.data.cpu.temp|round }}°C</td>
-                    <td>{{ system.data.cpu.freq }} MHz</td>
-                    <td>{{ system.data.cpu.usage }}%</td>
+                    <td>{{ core.data.cpu.temp|round }}°C</td>
+                    <td>{{ core.data.cpu.freq }} MHz</td>
+                    <td>{{ core.data.cpu.usage }}%</td>
                 </tr>
                 </tbody>
             </table>
@@ -57,9 +57,9 @@
                 </thead>
                 <tbody>
                 <tr>
-                    <td>{{ system.data.disk.used|round }}GB</td>
-                    <td>{{ system.data.disk.free|round }}GB</td>
-                    <td>{{ system.data.disk.total|round }}GB</td>
+                    <td>{{ core.data.disk.used|round }}GB</td>
+                    <td>{{ core.data.disk.free|round }}GB</td>
+                    <td>{{ core.data.disk.total|round }}GB</td>
                 </tr>
                 </tbody>
             </table>
@@ -77,7 +77,7 @@
                 </tr>
                 </thead>
                 <tbody>
-                {% for proc in system.data.processes %}
+                {% for proc in core.data.processes %}
                     <tr>
                         <td>{{ proc.name }}</td>
                         <td>{{ proc.pid }}</td>
@@ -94,9 +94,9 @@
 {% block scripts %}
 <script>
     $(function () {
-        App.gauge('#temp',Math.round({{ system.data.cpu.temp }}), '{y}°C', '{{ system.data.cpu.ystop }}');
-        App.gauge('#cpu', Math.round({{ system.data.cpu.usage }}), '{y}%', '{{ system.data.cpu.ystop }}');
-        App.gauge('#disk', Math.round({{ system.data.disk.percent}}), '{y}%', '{{ system.data.cpu.ystop }}')
+        App.gauge('#temp',Math.round({{ core.data.cpu.temp }}), '{y}°C', '{{ core.data.cpu.ystop }}');
+        App.gauge('#cpu', Math.round({{ core.data.cpu.usage }}), '{y}%', '{{ core.data.cpu.ystop }}');
+        App.gauge('#disk', Math.round({{ core.data.disk.percent}}), '{y}%', '{{ core.data.cpu.ystop }}')
     });
 </script>
 {% endblock %}
