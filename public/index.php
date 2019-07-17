@@ -35,7 +35,7 @@ $router->respond('GET', '/', function () use ($api, $view)
         die("Could not fetch data from the api :(");
     }
 
-    return $view->render('monitor.twig', $data);
+    return $view->render('dashboard.twig', $data);
 });
 
 $router->dispatch();

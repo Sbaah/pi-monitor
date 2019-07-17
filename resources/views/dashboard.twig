@@ -1,35 +1,6 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <title>Padmin | Raspberry Pi Dashboard</title>
-    <meta http-equiv="refresh" content="300">
+{% extends 'layout.twig' %}
 
-    <link rel="stylesheet" href="css/bundle.min.css">
-    <link rel="stylesheet" href="css/app.min.css">
-    <link href="https://fonts.googleapis.com/css?family=Lato|Source+Sans+Pro:200,400,700" rel="stylesheet">
-
-    <script type="text/javascript" src="js/bundle.min.js"></script>
-    <script type="text/javascript" src="js/app.min.js"></script>
-
-</head>
-<body>
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-    <a class="navbar-brand" href="#">PyMonitor</a>
-
-    <div class="navbar ml-auto">
-        <ul class="navbar-nav mr-auto">
-            <li class="nav-item">
-                <small>
-                    {{ system.data.platform.distro }} ({{ system.data.platform.kernel }})
-                    <br>
-                    Uptime: {{ system.data.uptime.uptime }}
-                </small>
-            </li>
-        </ul>
-    </div>
-</nav>
-
-<div class="container my-5">
+{% block content %}
     <div class="row">
         <div class="col-md-4">
             <div class="third widget doughnut">
@@ -68,9 +39,9 @@
                 </thead>
                 <tbody>
                 <tr>
-                    <td scope="row">{{ system.data.cpu.temp|round }}°C</td>
-                    <td scope="row">{{ system.data.cpu.freq }} MHz</td>
-                    <td scope="row">{{ system.data.cpu.usage }}%</td>
+                    <td>{{ system.data.cpu.temp|round }}°C</td>
+                    <td>{{ system.data.cpu.freq }} MHz</td>
+                    <td>{{ system.data.cpu.usage }}%</td>
                 </tr>
                 </tbody>
             </table>
@@ -86,17 +57,12 @@
                 </thead>
                 <tbody>
                 <tr>
-                    <td scope="row">{{ system.data.disk.used|round }}GB</td>
-                    <td scope="row">{{ system.data.disk.free|round }}GB</td>
-                    <td scope="row">{{ system.data.disk.total|round }}GB</td>
+                    <td>{{ system.data.disk.used|round }}GB</td>
+                    <td>{{ system.data.disk.free|round }}GB</td>
+                    <td>{{ system.data.disk.total|round }}GB</td>
                 </tr>
                 </tbody>
             </table>
-        </div>
-    </div>
-    <div class="row my-5">
-        <div class="col-md-12">
-            <div id="live_view"></div>
         </div>
     </div>
     <div class="row my-5">
@@ -123,13 +89,14 @@
             </table>
         </div>
     </div>
-</div>
+{% endblock %}
+
+{% block scripts %}
 <script>
     $(function () {
-        sg("#temp",Math.round({{ system.data.cpu.temp }}), '{y}°C', "{{ system.data.cpu.ystop }}");
-        sg("#cpu", Math.round({{ system.data.cpu.usage }}), '{y}%', "{{ system.data.cpu.ystop }}");
-        sg("#disk", Math.round({{ system.data.disk.percent}}), '{y}%', "{{ system.data.cpu.ystop }}")
+        App.gauge("#temp",Math.round({{ system.data.cpu.temp }}), '{y}°C', "{{ system.data.cpu.ystop }}");
+        App.gauge("#cpu", Math.round({{ system.data.cpu.usage }}), '{y}%', "{{ system.data.cpu.ystop }}");
+        App.gauge("#disk", Math.round({{ system.data.disk.percent}}), '{y}%', "{{ system.data.cpu.ystop }}")
     });
 </script>
-</body>
-</html>
+{% endblock %}
