@@ -20,9 +20,9 @@
         <ul class="navbar-nav mr-auto">
             <li class="nav-item">
                 <small>
-                    {{ data.platform.distro }} ({{ data.platform.kernel }})
+                    {{ system.data.platform.distro }} ({{ system.data.platform.kernel }})
                     <br>
-                    Uptime: {{ data.uptime.uptime }}
+                    Uptime: {{ system.data.uptime.uptime }}
                 </small>
             </li>
         </ul>
@@ -68,9 +68,9 @@
                 </thead>
                 <tbody>
                 <tr>
-                    <td scope="row">{{ data.cpu.temp|round }}°C</td>
-                    <td scope="row">{{ data.cpu.freq }}MHz</td>
-                    <td scope="row">{{ data.cpu.usage }}%</td>
+                    <td scope="row">{{ system.data.cpu.temp|round }}°C</td>
+                    <td scope="row">{{ system.data.cpu.freq }} MHz</td>
+                    <td scope="row">{{ system.data.cpu.usage }}%</td>
                 </tr>
                 </tbody>
             </table>
@@ -86,9 +86,9 @@
                 </thead>
                 <tbody>
                 <tr>
-                    <td scope="row">{{ data.disk.used|round }}GB</td>
-                    <td scope="row">{{ data.disk.free|round }}GB</td>
-                    <td scope="row">{{ data.disk.total|round }}GB</td>
+                    <td scope="row">{{ system.data.disk.used|round }}GB</td>
+                    <td scope="row">{{ system.data.disk.free|round }}GB</td>
+                    <td scope="row">{{ system.data.disk.total|round }}GB</td>
                 </tr>
                 </tbody>
             </table>
@@ -107,16 +107,16 @@
                     <th scope="col">Name</th>
                     <th scope="col">PID</th>
                     <th scope="col">User</th>
-                    <th scope="col">VMS</th>
+                    <th scope="col">Mem</th>
                 </tr>
                 </thead>
                 <tbody>
-                {% for proc in data.processes %}
+                {% for proc in system.data.processes %}
                     <tr>
                         <td>{{ proc.name }}</td>
                         <td>{{ proc.pid }}</td>
                         <td>{{ proc.username }}</td>
-                        <td>{{ proc.vms}}</td>
+                        <td>{{ proc.mem }} MiB</td>
                     </tr>
                 {% endfor %}
                 </tbody>
@@ -126,247 +126,9 @@
 </div>
 <script>
     $(function () {
-        $('#temp').highcharts({
-            chart: {
-                type: 'solidgauge'
-            },
-            title: null,
-            credits: {
-                enabled: false
-            },
-            tooltip: {
-                enabled: false
-            },
-            pane: {
-                center: ['50%', '50%'],
-                size: '100%',
-                startAngle: 0,
-                endAngle: 360,
-                background: {
-                    borderWidth: 0,
-                    backgroundColor: {
-                        radialGradient: {cx: 0.5, cy: 0.5, r: 0.46},
-                        stops: [
-                            [0, '#000'],
-                            [1, '#D6DADC']
-                        ]
-                    },
-                    innerRadius: '90%',
-                    outerRadius: '100%',
-                    shape: 'circle'
-                }
-            },
-            yAxis: {
-                min: 0,
-                max: 100,
-                title: {
-                    text: 'Speed'
-                },
-                stops: [
-                    // Safe temperature caps out at 60
-                    {% if(data.cpu.temp < 55) %}
-                        [0, "#28a745"]
-                     // Thermal throttling will occur at 80
-                    {% elseif(data.cpu.temp >= 55 or data.cpu.temp < 81) %}
-                        [0, "#ffc107"]
-                    // If you see red you have a serious problem
-                    {% else %}
-                        [0, "#dc3545"]
-                    {% endif %}
-                ],
-                lineWidth: 0,
-                minorTickInterval: null,
-                tickPixelInterval: 400,
-                tickWidth: 0,
-                title: {
-                    y: -70
-                },
-                labels: {
-                    enabled: false
-                }
-            },
-            plotOptions: {
-                solidgauge: {
-                    dataLabels: {
-                        enabled: true,
-                        y: -31,
-                        borderWidth: 0,
-                        useHTML: true,
-                        format: '{y}°C',
-                        style: {
-                            fontSize: '42px',
-                            fontFamily: 'Lato',
-                            fontWeight: '300',
-                            color: '#4A4A4A'
-                        }
-                    }
-                }
-            },
-            series: [{
-                innerRadius: '90%',
-                data: [Math.round({{ data.cpu.temp }})]
-            }]
-        });
-    });
-
-    $(function () {
-        $('#cpu').highcharts({
-            chart: {
-                type: 'solidgauge'
-            },
-            title: null,
-            credits: {
-                enabled: false
-            },
-            tooltip: {
-                enabled: false
-            },
-            pane: {
-                center: ['50%', '50%'],
-                size: '100%',
-                startAngle: 0,
-                endAngle: 360,
-                background: {
-                    borderWidth: 0,
-                    backgroundColor: {
-                        radialGradient: {cx: 0.5, cy: 0.5, r: 0.46},
-                        stops: [
-                            [0, '#000'],
-                            [1, '#D6DADC']
-                        ]
-                    },
-                    innerRadius: '90%',
-                    outerRadius: '100%',
-                    shape: 'circle'
-                }
-            },
-            yAxis: {
-                min: 0,
-                max: 100,
-                title: {
-                    text: 'Speed'
-                },
-                stops: [
-                    {% if(data.cpu.usage < 60) %}
-                        [0, "#28a745"]
-                    {% elseif(data.cpu.usage >= 60 or data.cpu.usage < 85) %}
-                        [0, "#ffc107"]
-                    {% else %}
-                        [0, "#dc3545"]
-                    {% endif %}
-                ],
-                lineWidth: 0,
-                minorTickInterval: null,
-                tickPixelInterval: 400,
-                tickWidth: 0,
-                title: {
-                    y: -70
-                },
-                labels: {
-                    enabled: false
-                }
-            },
-            plotOptions: {
-                solidgauge: {
-                    dataLabels: {
-                        enabled: true,
-                        y: -31,
-                        borderWidth: 0,
-                        useHTML: true,
-                        format: '{y}%',
-                        style: {
-                            fontSize: '42px',
-                            fontFamily: 'Lato',
-                            fontWeight: '300',
-                            color: '#4A4A4A'
-                        }
-                    }
-                }
-            },
-            series: [{
-                innerRadius: '90%',
-                data: [{{ data.cpu.usage }}]
-            }
-            ]
-        });
-    });
-
-    $(function () {
-        $('#disk').highcharts({
-            chart: {
-                type: 'solidgauge'
-            },
-            title: null,
-            credits: {
-                enabled: false
-            },
-            tooltip: {
-                enabled: false
-            },
-            pane: {
-                center: ['50%', '50%'],
-                size: '100%',
-                startAngle: 0,
-                endAngle: 360,
-                background: {
-                    borderWidth: 0,
-                    backgroundColor: {
-                        radialGradient: {cx: 0.5, cy: 0.5, r: 0.46},
-                        stops: [
-                            [0, '#000'],
-                            [1, '#D6DADC']
-                        ]
-                    },
-                    innerRadius: '90%',
-                    outerRadius: '100%',
-                    shape: 'circle'
-                }
-            },
-            yAxis: {
-                min: 0,
-                max: 100,
-                stops: [
-                    {% if(data.disk.percent < 45) %}
-                        [0, "#28a745"]
-                    {% elseif(data.disk.used >= 45 or data.disk.used < 80) %}
-                        [0, "#ffc107"]
-                    {% else %}
-                        [0, "#dc3545"]
-                    {% endif %}
-                ],
-                lineWidth: 0,
-                minorTickInterval: null,
-                tickPixelInterval: 400,
-                tickWidth: 0,
-                title: {
-                    y: -70
-                },
-                labels: {
-                    enabled: false
-                }
-            },
-            plotOptions: {
-                solidgauge: {
-                    dataLabels: {
-                        enabled: true,
-                        y: -31,
-                        borderWidth: 0,
-                        useHTML: true,
-                        format: '{y}%',
-                        style: {
-                            fontSize: '42px',
-                            fontFamily: 'Lato',
-                            fontWeight: '300',
-                            color: '#4A4A4A'
-                        }
-                    }
-                }
-            },
-            series: [{
-                innerRadius: '90%',
-                data: [{{ data.disk.percent }}]
-            }]
-        });
+        sg("#temp",Math.round({{ system.data.cpu.temp }}), '{y}°C', "{{ system.data.cpu.ystop }}");
+        sg("#cpu", Math.round({{ system.data.cpu.usage }}), '{y}%', "{{ system.data.cpu.ystop }}");
+        sg("#disk", Math.round({{ system.data.disk.percent}}), '{y}%', "{{ system.data.cpu.ystop }}")
     });
 </script>
 </body>

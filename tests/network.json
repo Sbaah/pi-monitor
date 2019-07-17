@@ -1,0 +1,34 @@
+{
+    "data": {
+        "interfaces": {
+            "eth0": {
+                "dropout": 0,
+                "error_in": 0,
+                "error_out": 0,
+                "mb_received": 0,
+                "mb_sent": 0,
+                "pk_received": 0,
+                "pk_sent": 0
+            },
+            "lo": {
+                "dropout": 0,
+                "error_in": 0,
+                "error_out": 0,
+                "mb_received": 89,
+                "mb_sent": 89,
+                "pk_received": 1555517,
+                "pk_sent": 1555517
+            },
+            "wlan0": {
+                "dropout": 0,
+                "error_in": 0,
+                "error_out": 0,
+                "mb_received": 542,
+                "mb_sent": 64,
+                "pk_received": 582041,
+                "pk_sent": 324724
+            }
+        },
+        "ssid": "Example SSID"
+    }
+}
