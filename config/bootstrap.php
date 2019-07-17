@@ -8,7 +8,7 @@ use Twig\Loader\FilesystemLoader;
 
 require __DIR__ . '/../vendor/autoload.php';
 
-const DEBUG = false;
+const DEBUG = true;
 
 $loader = new FilesystemLoader(__DIR__ . '/../resources/views');
 $view = new Environment($loader, [
