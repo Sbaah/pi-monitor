@@ -51,7 +51,12 @@ class Caller
      */
     public function call(string $endpoint, string $method = 'GET')
     {
-        if(substr($endpoint, 0, 1) !== '/') {
+        if (DEBUG) {
+            $endpoint = $endpoint . ".json";
+            return $this->toArray(json_decode(file_get_contents(__DIR__ . '/../../tests/' . $endpoint)));
+        }
+
+        if (substr($endpoint, 0, 1) !== '/') {
             $endpoint = "/" . $endpoint;
         }
 
@@ -66,11 +71,6 @@ class Caller
             echo $e->getMessage();
             return false;
         }
-    }
-
-    public function test($file)
-    {
-        return $this->toArray(json_decode(file_get_contents(__DIR__ . '/../../tests/' . $file)));
     }
 
     /**
