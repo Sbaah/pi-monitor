@@ -2,3 +2,10 @@
 /node_modules
 /vendor
 /public/cache/*
+!/public/cache/README.md
+/public/css/*
+!/public/css/README.md
+/public/js/*
+/public/js/README.md
+/public/webfonts/*
+!/public/webfonts/README.md
