@@ -11,10 +11,11 @@
 <body>
 <div class="d-flex toggled" id="wrapper">
     <div class="bg-dark text-light border-right-0" id="sidebar-wrapper">
-        <div class="sidebar-heading">PyMonitor</div>
+        <div class="sidebar-heading">PyMonitor
+        </div>
         <div class="list-group list-group-flush">
             <a href="/" class="list-group-item list-group-item-action bg-dark text-light">Dashboard</a>
-            <a href="#" class="list-group-item list-group-item-action bg-dark text-light">System</a>
+            <a href="settings" class="list-group-item list-group-item-action bg-dark text-light">Settings</a>
             <a href="/network" class="list-group-item list-group-item-action bg-dark text-light">Network</a>
         </div>
     </div>
@@ -27,7 +28,12 @@
                         <small>
                             {{ core.data.platform.distro }} ({{ core.data.platform.kernel }})
                             <br>
-                            Uptime: {{ core.data.uptime.uptime }}
+                            Uptime: {{ core.data.uptime.uptime }}.&nbsp;
+                            Temp: {{ core.data.cpu.temp|round }}°C
+                            (<img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/79424/fan.png"
+                                  alt="Fan is {{ settings.cooling.data }}"
+                                  title="Fan is {{ settings.cooling.data }}"
+                                  class="fan-status"/>)
                         </small>
                     </li>
                 </ul>
@@ -46,6 +52,8 @@
         e.preventDefault();
         $("#wrapper").toggleClass("toggled");
     });
+
+    TweenMax.to($('.fan-status'), 2, {rotation: 360, repeat: -1, ease: Linear.easeInOut})
 </script>
 {% block scripts %}
 {% endblock %}

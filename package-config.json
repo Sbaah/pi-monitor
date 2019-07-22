@@ -10,7 +10,8 @@
             "node_modules/bootstrap/dist/js/bootstrap.min.js",
             "resources/assets/js/vendor/highcharts.js",
             "resources/assets/js/vendor/highcharts.extended.js",
-            "resources/assets/js/vendor/highcharts.solid-gauge.js"
+            "resources/assets/js/vendor/highcharts.solid-gauge.js",
+            "resources/assets/js/vendor/tweenmax.js"
         ],
         "js": "bundle.min.js"
     },
@@ -27,8 +28,8 @@
     "assets": {
         "media": {
             "images": [
-                "src/media/**/*.jpg",
-                "src/media/**/*.png"
+                "resources/media/**/*.jpg",
+                "resources/media/**/*.png"
             ]
         },
         "fonts": [
