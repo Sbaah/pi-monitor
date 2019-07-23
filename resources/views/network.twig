@@ -1,5 +1,8 @@
 {% extends 'layout.twig' %}
 
+{% block styles %}
+{% endblock %}
+
 {% block content %}
     <div class="row h-100">
         <div class="col-md-6">
@@ -35,9 +38,7 @@
             </table>
         </div>
     </div>
-
     <hr>
-
     <ul class="nav nav-tabs">
         {% for inet,stat in network.data.interfaces %}
             {% if inet == "wlan0" %}
@@ -48,7 +49,6 @@
             <li class="nav-item"><a class="nav-link {{ active }}" data-toggle="tab" href="#{{ inet }}">{{ inet }}</a></li>
         {% endfor %}
     </ul>
-
     <div class="tab-content my-3" style="width: 100%">
         {% for inet,stat in network.data.interfaces %}
             {% if inet == "wlan0" %}

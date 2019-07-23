@@ -1,22 +1,25 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>{{ title }} | PyMonitor</title>
+    <title>{{ title }} | PiMonitor</title>
     <meta http-equiv="refresh" content="300">
 
     <link rel="stylesheet" href="css/bundle.min.css">
     <link rel="stylesheet" href="css/app.min.css">
     <link href="https://fonts.googleapis.com/css?family=Lato|Source+Sans+Pro:200,400,700" rel="stylesheet">
+    {% block styles %}
+    {% endblock %}
 </head>
 <body>
 <div class="d-flex toggled" id="wrapper">
     <div class="bg-dark text-light border-right-0" id="sidebar-wrapper">
-        <div class="sidebar-heading">PyMonitor
+        <div class="sidebar-heading">PiMonitor
         </div>
         <div class="list-group list-group-flush">
             <a href="/" class="list-group-item list-group-item-action bg-dark text-light">Dashboard</a>
-            <a href="settings" class="list-group-item list-group-item-action bg-dark text-light">Settings</a>
             <a href="/network" class="list-group-item list-group-item-action bg-dark text-light">Network</a>
+            <a href="/software" class="list-group-item list-group-item-action bg-dark text-light">Software</a>
+            <a href="settings" class="list-group-item list-group-item-action bg-dark text-light">Settings</a>
         </div>
     </div>
     <div id="page-content-wrapper">
@@ -26,13 +29,13 @@
                 <ul class="navbar-nav mr-auto">
                     <li class="nav-item">
                         <small>
-                            {{ core.data.platform.distro }} ({{ core.data.platform.kernel }})
+                            OS: {{ core.data.platform.distro }}. &nbsp; Kernel: {{ core.data.platform.kernel }}
                             <br>
-                            Uptime: {{ core.data.uptime.uptime }}.&nbsp;
+                            Uptime: {{ core.data.uptime.uptime }}. &nbsp;
                             Temp: {{ core.data.cpu.temp|round }}°C
-                            (<img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/79424/fan.png"
-                                  alt="Fan is {{ settings.cooling.data }}"
-                                  title="Fan is {{ settings.cooling.data }}"
+                            (<img src="media/fan.png"
+                                  alt="Fan: {{ core.fan.data }}"
+                                  title="Fan: {{ core.fan.data }}"
                                   class="fan-status"/>)
                         </small>
                     </li>
@@ -53,7 +56,9 @@
         $("#wrapper").toggleClass("toggled");
     });
 
-    TweenMax.to($('.fan-status'), 2, {rotation: 360, repeat: -1, ease: Linear.easeInOut})
+    {% if core.fan.data == "Enabled" %}
+        TweenMax.to($('.fan-status'), 2, {rotation: 360, repeat: -1, ease: Linear.easeInOut});
+    {% endif %}
 </script>
 {% block scripts %}
 {% endblock %}
