@@ -5,18 +5,11 @@
  * @author Chris Rowles <me@rowles.ch>
  */
 import gulp from 'gulp';
-import del from 'del';
 import plugins from 'gulp-load-plugins';
 import config from './config/assets';
 
 // automatically load gulp plugins
 const plugin = plugins();
-
-gulp.task('clean', () => {
-    return del([config.out + '/**', '!'+config.out], {
-        force: true
-    });
-});
 
 gulp.task('images', () => {
     return gulp.src(config.assets.media.images)
