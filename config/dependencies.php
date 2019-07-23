@@ -1,6 +1,6 @@
 <?php
 
-use App\Controllers\DashboardController;
+use App\Api\Caller;
 use Klein\Klein;
 use Pimple\Container;
 use Twig\Environment;
@@ -25,6 +25,6 @@ $app['router'] = function ($c) {
 };
 
 $app['api'] = function ($c) {
-    $api = new App\Api\Caller();
+    $api = new Caller();
     return $api;
 };

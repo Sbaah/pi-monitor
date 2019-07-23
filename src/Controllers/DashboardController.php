@@ -2,19 +2,20 @@
 
 namespace App\Controllers;
 
-use Pimple\Container;
-
-class DashboardController extends Controller {
-
-    public function __construct(Container $container)
-    {
-        parent::__construct($container);
-    }
-
+/**
+ * Dashboard controller class.
+ *
+ * @package App\Controllers
+ */
+class DashboardController extends Controller
+{
+    /**
+     * Render the dashboard.
+     *
+     * @return mixed
+     */
     public function view()
     {
-        $data['core'] = $this->api->call('system');
-        $data['core']['fan'] = $this->api->call('system/fan');
-        return $this->render('dashboard.twig', $data);
+        return $this->render('dashboard.twig', $this->data);
     }
 }

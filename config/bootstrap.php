@@ -1,24 +1,10 @@
 <?php
 
-use App\Api\Caller;
-use Klein\Klein;
-use Twig\Environment;
-use Twig\Extension\DebugExtension;
-use Twig\Loader\FilesystemLoader;
-
 require __DIR__ . '/../vendor/autoload.php';
-
-require __DIR__ . '/../config/dependencies.php';
 
 $dotenv = Dotenv\Dotenv::create(__DIR__);
 $dotenv->load();
 
-$loader = new FilesystemLoader(__DIR__ . '/../resources/views');
-$view = new Environment($loader, [
-    'cache' => false,
-    'debug' => env("DEBUG")
-]);
-$view->addExtension(new DebugExtension());
+require __DIR__ . '/../config/dependencies.php';
 
-$router = new Klein();
-$api = new Caller();
+require __DIR__ . '/../config/routes.php';
