@@ -12,11 +12,15 @@ class NetworkController extends Controller
     /**
      * Render the network page.
      *
+     * @param array $data
+     *
      * @return mixed
      */
-    public function view()
+    public function view($data = [])
     {
-        $this->data['network'] = $this->api->call('network');
-        return $this->render('network.twig', $this->data);
+        $data['network'] = $this->api->call('network');
+        $viewData = $this->viewData($data);
+
+        return $this->render('network.twig', $viewData);
     }
 }

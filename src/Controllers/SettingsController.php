@@ -3,14 +3,14 @@
 namespace App\Controllers;
 
 /**
- * Dashboard controller class.
+ * Network controller class.
  *
  * @package App\Controllers
  */
-class DashboardController extends Controller
+class SettingsController extends Controller
 {
     /**
-     * Render the dashboard.
+     * Render the network page.
      *
      * @param array $data
      *
@@ -20,6 +20,6 @@ class DashboardController extends Controller
     {
         $viewData = $this->viewData($data);
 
-        return $this->render('dashboard.twig', $viewData);
+        return $this->render('settings.twig', $viewData);
     }
 }
