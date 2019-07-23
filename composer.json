@@ -19,7 +19,8 @@
         "twig/twig": "^2.11",
         "klein/klein": "^2.1",
         "ext-json": "*",
-        "php-di/php-di": "^6.0",
-        "vlucas/phpdotenv": "^3.4"
+        "vlucas/phpdotenv": "^3.4",
+        "monolog/monolog": "^1.24",
+        "pimple/pimple": "^3.2"
     }
 }

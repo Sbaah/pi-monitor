@@ -3,14 +3,14 @@
 namespace App\Controllers;
 
 /**
- * Network controller class.
+ * Settings controller class.
  *
  * @package App\Controllers
  */
 class SettingsController extends Controller
 {
     /**
-     * Render the network page.
+     * Render the settings page.
      *
      * @param array $data
      *
