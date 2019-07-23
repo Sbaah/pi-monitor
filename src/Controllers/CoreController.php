@@ -5,7 +5,7 @@ namespace App\Controllers;
 use Pimple\Container;
 
 /**
- * Dashboard controller class.
+ * Core controller class.
  *
  * @package App\Controllers
  */
