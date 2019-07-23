@@ -7,7 +7,7 @@
 import gulp from 'gulp';
 import del from 'del';
 import plugins from 'gulp-load-plugins';
-import config from './package-config';
+import config from './config/assets';
 
 // automatically load gulp plugins
 const plugin = plugins();

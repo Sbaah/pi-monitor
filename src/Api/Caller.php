@@ -10,6 +10,7 @@ namespace App\Api;
 
 use GuzzleHttp\Client;
 use GuzzleHttp\Exception\GuzzleException;
+use Psr\Http\Message\ResponseInterface;
 
 /**
  * Class Monitor
@@ -28,7 +29,7 @@ class Caller
     public function __construct()
     {
         $this->client = new Client([
-            'base_uri' => 'http://raspberry-api.local',
+            'base_uri' => env("API_URL"),
         ]);
     }
 
@@ -51,10 +52,10 @@ class Caller
      */
     public function call(string $endpoint, string $method = 'GET')
     {
-        if (DEBUG) {
+        if (env("DEBUG") === true) {
             $file = __DIR__ . '/../../tests/' . $endpoint . '.json';
             if(file_exists($file)) {
-                return $this->toArray(json_decode(file_get_contents($file)));
+                return toArray(json_decode(file_get_contents($file)));
             } else {
                 return false;
             }
@@ -65,9 +66,9 @@ class Caller
         }
 
         try {
-            $response= $this->client->request($method, $endpoint);
+            $response = $this->client->request($method, $endpoint);
             if ($response && $response->getStatusCode() === 200) {
-                return $this->toArray(json_decode($response->getBody()->getContents()));
+                return toArray(json_decode($response->getBody()->getContents()));
             } else {
                 return false;
             }
@@ -75,20 +76,5 @@ class Caller
             echo $e->getMessage();
             return false;
         }
-    }
-
-    /**
-     * Helper method to convert objects to arrays.
-     *
-     * @param $object
-     *
-     * @return array
-     */
-    public function toArray ($object)
-    {
-        if(!is_object($object) && !is_array($object))
-            return $object;
-
-        return array_map('self::toArray', (array) $object);
     }
 }

@@ -8,12 +8,13 @@ use Twig\Loader\FilesystemLoader;
 
 require __DIR__ . '/../vendor/autoload.php';
 
-const DEBUG = false;
+$dotenv = Dotenv\Dotenv::create(__DIR__);
+$dotenv->load(true);
 
 $loader = new FilesystemLoader(__DIR__ . '/../resources/views');
 $view = new Environment($loader, [
     'cache' => false,
-    'debug' => DEBUG
+    'debug' => getenv("DEBUG")
 ]);
 $view->addExtension(new DebugExtension());
 
