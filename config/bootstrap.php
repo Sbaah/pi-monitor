@@ -9,12 +9,12 @@ use Twig\Loader\FilesystemLoader;
 require __DIR__ . '/../vendor/autoload.php';
 
 $dotenv = Dotenv\Dotenv::create(__DIR__);
-$dotenv->load(true);
+$dotenv->load();
 
 $loader = new FilesystemLoader(__DIR__ . '/../resources/views');
 $view = new Environment($loader, [
     'cache' => false,
-    'debug' => getenv("DEBUG")
+    'debug' => env("DEBUG")
 ]);
 $view->addExtension(new DebugExtension());
 
