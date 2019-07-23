@@ -9,7 +9,7 @@ use Twig\Loader\FilesystemLoader;
 
 $app = new Container();
 
-$app['view'] = function ($c) {
+$app['view'] = function () {
     $loader = new FilesystemLoader(__DIR__ . '/../resources/views');
     $view = new Environment($loader, [
         'cache' => __DIR__ . '/../public/cache',
@@ -19,12 +19,12 @@ $app['view'] = function ($c) {
     return $view;
 };
 
-$app['router'] = function ($c) {
+$app['router'] = function () {
     $router = new Klein();
     return $router;
 };
 
-$app['api'] = function ($c) {
+$app['api'] = function () {
     $api = new Caller();
     return $api;
 };
