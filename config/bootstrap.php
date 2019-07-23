@@ -8,6 +8,8 @@ use Twig\Loader\FilesystemLoader;
 
 require __DIR__ . '/../vendor/autoload.php';
 
+require __DIR__ . '/../config/dependencies.php';
+
 $dotenv = Dotenv\Dotenv::create(__DIR__);
 $dotenv->load();
 

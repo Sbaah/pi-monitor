@@ -29,7 +29,7 @@ class Caller
     public function __construct()
     {
         $this->client = new Client([
-            'base_uri' => env("API_URL"),
+            'base_uri' => "http://raspberry-api.local"
         ]);
     }
 
