@@ -7,7 +7,7 @@ namespace App\Controllers;
  *
  * @package App\Controllers
  */
-class NetworkController extends Controller
+class NetworkController extends CoreController
 {
     /**
      * Render the network page.

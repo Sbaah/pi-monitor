@@ -7,7 +7,7 @@ namespace App\Controllers;
  *
  * @package App\Controllers
  */
-class DashboardController extends Controller
+class DashboardController extends CoreController
 {
     /**
      * Render the dashboard.

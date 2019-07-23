@@ -7,7 +7,7 @@ namespace App\Controllers;
  *
  * @package App\Controllers
  */
-class SettingsController extends Controller
+class SettingsController extends CoreController
 {
     /**
      * Render the settings page.

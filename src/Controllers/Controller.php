@@ -37,12 +37,6 @@ abstract class Controller {
         $this->log = $container['log'];
         $this->router = $container['router'];
         $this->view = $container['view'];
-
-        $data['core'] = $this->api->call('system');
-        // I have a fan attachment, so I've included a call to enable fan control.
-        $data['core']['fan'] = $this->api->call('system/fan');
-
-        $this->viewData($data);
     }
 
     /**
