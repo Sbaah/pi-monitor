@@ -14,6 +14,9 @@ abstract class Controller {
     /** @var mixed $api */
     protected $api;
 
+    /** @var mixed $log */
+    protected $log;
+
     /** @var mixed $router */
     protected $router;
 
@@ -31,8 +34,9 @@ abstract class Controller {
     public function __construct(Container $container)
     {
         $this->api = $container['api'];
-        $this->view = $container['view'];
+        $this->log = $container['log'];
         $this->router = $container['router'];
+        $this->view = $container['view'];
 
         $data['core'] = $this->api->call('system');
         // I have a fan attachment, so I've included a call to enable fan control.

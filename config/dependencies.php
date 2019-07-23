@@ -2,12 +2,22 @@
 
 use App\Api\Caller;
 use Klein\Klein;
+use Monolog\Handler\StreamHandler;
+use Monolog\Logger;
 use Pimple\Container;
 use Twig\Environment;
 use Twig\Extension\DebugExtension;
 use Twig\Loader\FilesystemLoader;
 
 $app = new Container();
+
+$app['log'] = function () {
+    $log = new Logger('monitor');
+    $log->pushHandler(
+        new StreamHandler(__DIR__ . '/../logs/monitor.log', Logger::DEBUG)
+    );
+    return $log;
+};
 
 $app['view'] = function () {
     $loader = new FilesystemLoader(__DIR__ . '/../resources/views');

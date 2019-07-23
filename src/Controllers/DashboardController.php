@@ -19,6 +19,7 @@ class DashboardController extends Controller
     public function view($data = [])
     {
         $viewData = $this->viewData($data);
+        $this->log->info("hi");
 
         return $this->render('dashboard.twig', $viewData);
     }
