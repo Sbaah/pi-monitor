@@ -28,7 +28,6 @@ class Caller
      */
     public function __construct()
     {
-//        var_dump(env("API_URL"));die;
         $this->client = new Client([
             'base_uri' => env("API_URL")
         ]);

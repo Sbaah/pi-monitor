@@ -16,7 +16,7 @@ class SettingsController extends Controller
      *
      * @return mixed
      */
-    public function view($data = [])
+    public function view(array $data = [])
     {
         $viewData = $this->viewData($data);
 

@@ -16,7 +16,7 @@ class NetworkController extends Controller
      *
      * @return mixed
      */
-    public function view($data = [])
+    public function view(array $data = [])
     {
         $data['network'] = $this->api->call('network');
         $viewData = $this->viewData($data);

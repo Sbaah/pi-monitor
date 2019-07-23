@@ -52,7 +52,7 @@ abstract class Controller {
      *
      * @return array
      */
-    protected function viewData($data = [])
+    protected function viewData(array $data = []) : array
     {
         if (is_array($data)) {
             foreach ($data as $key => $val) {

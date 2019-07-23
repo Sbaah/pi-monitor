@@ -1,5 +1,8 @@
 <?php
 
+/*----------------------------------------
+ | Configure application routes           |
+ ----------------------------------------*/
 /** @var \App\Controllers\DashboardController $dashboard */
 $app['router']->respond('GET', '/dashboard', function () use ($dashboard) {
     return $dashboard->view(['title' => 'Dashboard']);

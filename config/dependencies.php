@@ -9,6 +9,9 @@ use Twig\Environment;
 use Twig\Extension\DebugExtension;
 use Twig\Loader\FilesystemLoader;
 
+/*----------------------------------------
+ | Register application dependencies      |
+ ----------------------------------------*/
 $app = new Container();
 
 $app['log'] = function () {
