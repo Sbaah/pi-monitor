@@ -9,3 +9,6 @@ composer require raekw0n/pi-monitor
 ```
 
 ![image](https://i.imgur.com/sWoKUfH.png)
+
+## License
+pi-monitor is open-sourced software licensed under the MIT license.
