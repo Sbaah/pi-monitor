@@ -2,11 +2,8 @@
 
 namespace App\Exceptions;
 
-use App\Controllers\Controller;
-use Throwable;
-
-class ErrorHandler extends Exception {
-
+class ErrorHandler extends Exception
+{
     /**
      * Set data to pass to the view.
      *
@@ -29,7 +26,7 @@ class ErrorHandler extends Exception {
      * Renders templates with view data.
      *
      * @param string $template
-     * @param array $data
+     * @param array  $data
      *
      * @return mixed
      */

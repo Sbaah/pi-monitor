@@ -4,8 +4,6 @@ namespace App\Controllers;
 
 /**
  * Dashboard controller class.
- *
- * @package App\Controllers
  */
 class DashboardController extends CoreController
 {

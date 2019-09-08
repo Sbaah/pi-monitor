@@ -5,8 +5,8 @@ namespace App\Exceptions;
 use Pimple\Container;
 use Throwable;
 
-abstract class Exception extends \Exception {
-
+abstract class Exception extends \Exception
+{
     /** @var mixed $api */
     protected $api;
 
@@ -22,7 +22,7 @@ abstract class Exception extends \Exception {
     /** @var array $data */
     public $data = [];
 
-    public function __construct(Container $container, $message = "", $code = 0, Throwable $previous = null)
+    public function __construct(Container $container, $message = '', $code = 0, Throwable $previous = null)
     {
         parent::__construct($message, $code, $previous);
 
@@ -31,6 +31,4 @@ abstract class Exception extends \Exception {
         $this->router = $container['router'];
         $this->view = $container['view'];
     }
-
-
 }
