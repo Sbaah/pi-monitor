@@ -1,6 +1,6 @@
 [![StyleCI](https://github.styleci.io/repos/197078264/shield?branch=master)](https://github.styleci.io/repos/197078264)
 
-# py-monitor
+# pi-monitor
 
 An example client for the [py-monitor-api](https://github.com/cversyx/py-monitor-api)
 
