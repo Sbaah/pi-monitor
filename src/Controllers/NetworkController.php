@@ -4,8 +4,6 @@ namespace App\Controllers;
 
 /**
  * Network controller class.
- *
- * @package App\Controllers
  */
 class NetworkController extends CoreController
 {

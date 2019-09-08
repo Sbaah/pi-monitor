@@ -6,8 +6,6 @@ use Pimple\Container;
 
 /**
  * Core controller class.
- *
- * @package App\Controllers
  */
 class CoreController extends Controller
 {

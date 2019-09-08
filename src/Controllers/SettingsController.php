@@ -4,8 +4,6 @@ namespace App\Controllers;
 
 /**
  * Settings controller class.
- *
- * @package App\Controllers
  */
 class SettingsController extends CoreController
 {

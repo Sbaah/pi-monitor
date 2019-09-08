@@ -4,19 +4,21 @@
  * fetching data from the py-monitor api.
  *
  * @author Chris Rowles <me@rowles.ch>
+ *
  * @since 1.0
  */
+
 namespace App\Api;
 
 use GuzzleHttp\Client;
 use GuzzleHttp\Exception\GuzzleException;
 
 /**
- * Class Monitor
+ * Class Monitor.
  */
 class Caller
 {
-    /** @var Client the api client  */
+    /** @var Client the api client */
     private $client;
 
     /**
@@ -28,7 +30,7 @@ class Caller
     public function __construct()
     {
         $this->client = new Client([
-            'base_uri' => env("API_URL")
+            'base_uri' => env('API_URL'),
         ]);
     }
 
@@ -51,9 +53,9 @@ class Caller
      */
     public function call(string $endpoint, string $method = 'GET')
     {
-        if (env("DEBUG") === true) {
-            $file = __DIR__ . '/../../tests/' . $endpoint . '.json';
-            if(file_exists($file)) {
+        if (env('DEBUG') === true) {
+            $file = __DIR__.'/../../tests/'.$endpoint.'.json';
+            if (file_exists($file)) {
                 return toArray(json_decode(file_get_contents($file)));
             } else {
                 return false;
@@ -61,7 +63,7 @@ class Caller
         }
 
         if (substr($endpoint, 0, 1) !== '/') {
-            $endpoint = '/' . $endpoint;
+            $endpoint = '/'.$endpoint;
         }
 
         try {
@@ -73,6 +75,7 @@ class Caller
             }
         } catch (GuzzleException $e) {
             echo $e->getMessage();
+
             return false;
         }
     }
