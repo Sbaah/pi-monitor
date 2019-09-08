@@ -7,7 +7,7 @@ An example client for the [py-monitor-api](https://github.com/cversyx/py-monitor
 ## Installation
 
 ```bash
-composer require raekw0n/pi-monitor
+composer create-project raekw0n/pi-monitor
 ```
 
 ![image](https://i.imgur.com/sWoKUfH.png)
