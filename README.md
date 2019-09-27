@@ -8,7 +8,13 @@ An example client for the [py-monitor-api](https://github.com/cversyx/py-monitor
 
 ```bash
 composer create-project raekw0n/pi-monitor
+cp config/.env.example config/.env
 ```
+
+## Development
+
+To enable testing for development purposes, simply set `DEBUG=true` in your `config/.env`, this will then load the json test data contained within `tests/`, rather than calling the API.
+
 
 ![image](https://i.imgur.com/sWoKUfH.png)
 
