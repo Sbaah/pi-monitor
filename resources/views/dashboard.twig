@@ -97,9 +97,48 @@
 {% block scripts %}
     <script>
         $(() => {
-            App.gauge('#temp', Math.round({{ core.data.cpu.temp }}), '{y}°C', '#28a745');
-            App.gauge('#cpu', Math.round({{ core.data.cpu.usage }}), '{y}%', '#28a745');
-            App.gauge('#disk', Math.round({{ core.data.disk.percent }}), '{y}%', '#28a745');
+
+             if({{ core.data.cpu.temp }} < 60){
+
+               App.gauge('#temp', Math.round({{ core.data.cpu.temp }}), '{y}%', '#28a745') 
+            }
+            else if(({{ core.data.cpu.temp }}>61) && ({{ core.data.cpu.temp }}<80))
+            {
+               
+               App.gauge('#temp', Math.round({{ core.data.cpu.temp }}), '{y}%', '#f2fa0a')
+            }
+            else{
+                 App.gauge('#temp', Math.round({{ core.data.cpu.temp }}), '{y}%', '#e61010') 
+            }
+          
+                       
+
+            if({{ core.data.cpu.usage }} < 60){
+
+               App.gauge('#cpu', Math.round({{ core.data.cpu.usage }}), '{y}%', '#28a745') 
+            }
+             else if(({{ core.data.cpu.usage }}>61) && ({{ core.data.cpu.usage }}<80))
+            {
+               
+               App.gauge('#cpu', Math.round({{ core.data.cpu.usage }}), '{y}%', '#f2fa0a')
+            }
+            else{
+                 App.gauge('#cpu', Math.round({{ core.data.cpu.usage }}), '{y}%', '#e61010') 
+            }
+          
+
+           if({{core.data.disk.percent }} < 60){
+
+               App.gauge('#disk', Math.round({{ core.data.disk.percent  }}), '{y}%', '#28a745') 
+            } 
+            else if(({{ core.data.disk.percent }}>61) && ({{ core.data.disk.percent}}<80))
+            {
+               
+               App.gauge('#disk', Math.round({{ core.data.disk.percent}}), '{y}%', '#f2fa0a')
+            }
+            else{
+                 App.gauge('#disk', Math.round({{ core.data.disk.percent  }}), '{y}%', '#e61010') 
+            }
         });
     </script>
 {% endblock %}

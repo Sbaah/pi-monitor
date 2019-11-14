@@ -107,7 +107,18 @@
 {% block scripts %}
     <script>
         $(function () {
-            App.gauge('#quality', Math.round({{ network.data.wifi[0].quality }}), '{y}%', '#28a745')
+              if({{ network.data.wifi[0].quality }} < 60){
+
+                App.gauge('#quality', Math.round({{ network.data.wifi[0].quality }}), '{y}%', '#28a745')
+                }
+                 else if(({{network.data.wifi[0].quality }}>61) && ({{ network.data.wifi[0].quality}}<80))
+            {
+               
+               App.gauge('#quality', Math.round({{ network.data.wifi[0].quality }}), '{y}%', '#f2fa0a')
+            } 
+            else{
+                 App.gauge('#quality', Math.round({{ network.data.wifi[0].quality  }}), '{y}%', '#e61010') 
+            }
         });
     </script>
 {% endblock %}
